@@ -1,0 +1,4 @@
+<example>
+    <example1>{{ Body.name }}</example1>
+    <example2>{{ Body.number }}</example2>
+</example>

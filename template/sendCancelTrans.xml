@@ -1,0 +1,5 @@
+ <ns1:sendCancelacTransacc xmlns:ns1="http://business.mywebservice.inssjp.com/">
+    <arg0>{{data.ID}}</arg0><!--Id transacción a cancelar-->
+    <arg1>{{data.User}}</arg1><!--Usuario -->
+    <arg2>{{data.Password}}</arg2><!--Contraseña -->
+</ns1:sendCancelacTransacc>

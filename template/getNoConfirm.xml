@@ -1,0 +1,23 @@
+<ns1:getTransaccionesNoConfirmadas xmlns:ns1="http://business.mywebservice.inssjp.com/">
+    <arg0>{{ data.User }}</arg0><!-- Usuario -->
+    <arg1>{{ data.Password }}</arg1><!-- Contraseña -->
+    <arg2>{{ data.ID_Transaction }}</arg2><!-- Id transaccion global-->
+    <arg3>{{ data.GLN_Informador }}</arg3><!-- Cufe o gln agente informador-->
+    <arg4>{{ data.GLN_Origen }}</arg4><!-- Cufe o gln agente origen-->
+    <arg5>{{ data.GLN_Destino }}</arg5><!-- Cufe o gln agente destino-->
+    <arg6>{{ data.GTIN }}</arg6><!-- Gtin medicamento-->
+    <arg7>{{ data.ID_evento }}</arg7><!-- id evento -->
+    <arg8>{{ data.Date_Trans_from }}</arg8><!-- Fecha Transacción Desde -->
+    <arg9>{{ data.Date_Trans_to }}</arg9><!-- Fecha Transacción Hasta -->
+    <arg10>{{ data.Date_Operacion_from }}</arg10><!-- Fecha Operación Desde -->
+    <arg11>{{ data.Date_Operacion_to }}</arg11><!-- Fecha Operación Hasta -->
+    <arg12>{{ data.Date_Due_from }}</arg12><!-- Fecha Vencimiento Desde -->
+    <arg13>{{ data.Date_Due_to }}</arg13><!-- Fecha Vencimiento Hasta -->
+    <arg14>{{ data.NRemito }}</arg14><!-- Remito -->
+    <arg15>{{ data.NInvoice }}</arg15><!-- Factura -->
+    <arg16>{{ data.State_Trans }}</arg16><!-- Estado transaccion -->
+    <arg17>{{ data.Lote }}</arg17><!-- Lote -->
+    <arg18>{{ data.Serie }}</arg18><!-- Serie -->
+    <arg19>{{ data.Page }}</arg19><!-- Página -->
+    <arg21>{{ data.Offset }}</arg21><!-- Offset -->
+</ns1:getTransaccionesNoConfirmadas>

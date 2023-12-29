@@ -1,0 +1,8 @@
+<ns1:sendMedicamentosDHSerie xmlns:ns1="http://business.mywebservice.inssjp.com/">
+    <arg0>
+        {{data.Base}}
+        {{data.Paciente}}
+    </arg0>
+    <arg1>{{data.User}}</arg1><!-- Usuario -->
+    <arg2>{{data.Password}}</arg2><!-- Contraseña -->
+</ns1:sendMedicamentosDHSerie>
