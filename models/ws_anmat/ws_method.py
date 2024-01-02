@@ -1,6 +1,6 @@
 from datetime import datetime
 from enum import IntEnum
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from typing import Optional, Union
 from jinja2 import Environment, FileSystemLoader
 from models.ws_anmat.connection import HttpxConnection
@@ -34,25 +34,25 @@ class Confirm(CredentialUser):
 
 
 class GetNoConfirm(CredentialUser):
-    ID_Transaction: Optional[str] = "" 
-    GLN_Informador: Optional[str] = ""
-    GLN_Origen: Optional[str] = ""
-    GLN_Destino: Optional[str] = ""
-    GTIN: Optional[str] = ""
-    ID_evento: Optional[str] = ""
-    Date_Trans_from: Optional[str] = ""    
-    Date_Trans_to: Optional[str] = ""
-    Date_Operacion_from: Optional[str] = ""
-    Date_Operacion_to: Optional[str] = ""
-    Date_Due_from: Optional[str] = ""
-    Date_Due_to: Optional[str] = ""
-    NRemito: Optional[str] = ""
-    NInvoice: Optional[str] = ""
-    State_Trans: Optional[str] = ""
-    Lote: Optional[str] = ""
-    Serie: Optional[str] = ""
-    Page: Optional[str] = ""
-    Offset: Optional[str] = ""
+    ID_Transaction: Optional[str] = Field(default="") 
+    GLN_Informador: Optional[str] = Field(default="")
+    GLN_Origen: Optional[str] = Field(default="")
+    GLN_Destino: Optional[str] = Field(default="")
+    GTIN: Optional[str] = Field(default="")
+    ID_evento: Optional[str] = Field(default="")
+    Date_Trans_from: Optional[str] = Field(default="")    
+    Date_Trans_to: Optional[str] = Field(default="")
+    Date_Operacion_from: Optional[str] = Field(default="")
+    Date_Operacion_to: Optional[str] = Field(default="")
+    Date_Due_from: Optional[str] = Field(default="")
+    Date_Due_to: Optional[str] = Field(default="")
+    NRemito: Optional[str] = Field(default="")
+    NInvoice: Optional[str] = Field(default="")
+    State_Trans: Optional[str] = Field(default="")
+    Lote: Optional[str] = Field(default="")
+    Serie: Optional[str] = Field(default="")
+    Page: Optional[str] = Field(default="")
+    Offset: Optional[str] = Field(default="")
 
     async def send_to_ws(self, connection: HttpxConnection):
         get_no_confirm = folder_template.get_template("getNoConfirm.xml")
@@ -99,21 +99,21 @@ class IDEvent(IntEnum):
     pass
 
 class SendMedicamento(CredentialUser):
-    gtin: str
-    gln_origen: str
-    gln_destino: Optional[str] = None
-    n_factura: Optional[str] = None
-    n_remito: Optional[str] = None
-    vencimiento: Optional[str] = None
-    f_evento: str = datetime.now().strftime('%d/%m/%Y') 
-    h_evento: str = datetime.now().strftime('%H:%M')  
-    numero_serial: Optional[str] = None
+    gtin: str = Field(max_length=14)
+    gln_origen: str = Field(max_length=13)
+    gln_destino: Optional[str] = Field(default=None, max_length=13)
+    n_factura: Optional[str] = Field(default=None, max_length=20)
+    n_remito: Optional[str] = Field(default=None, max_length=20)
+    vencimiento: Optional[str] = Field(default=None, max_length=10)
+    f_evento: str = Field(default=datetime.now().strftime('%d/%m/%Y')) 
+    h_evento: str = Field(default=datetime.now().strftime('%H:%M'))  
+    numero_serial: Optional[str] = Field(default=None, max_length=20)
     SerieMedFrom: Optional[str] = None
     SerieMedTo: Optional[str] = None
     id_evento:Union[int, IDEvent]
     id_programa: Optional[str] = None
     id_motivo_devolucion: Optional[Union[int, IDDevolucion]] = None
-    lote: Optional[str] = None
+    lote: Optional[str] = Field(default=None, max_length=20)
     otro_motivo_devolucion: Optional[str] = None
     Paciente: Optional[DataPaciente] = None
 

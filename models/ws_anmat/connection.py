@@ -1,5 +1,6 @@
 import httpx
 from pydantic import BaseModel
+from typing import Union
 from jinja2 import Environment, FileSystemLoader
 import xmltodict
 import xml.etree.ElementTree as ET
@@ -13,10 +14,13 @@ class HttpxConnection(BaseModel):
     ws_pass: str = "testwservicepsw"
 
     async def send_requests(self, body:str):
+
         main_template = folder_template.get_template("main.xml")
         soap_body = main_template.render(Body=body)
+
         async with httpx.AsyncClient(base_url=self.base_url) as client:
             response = await client.post(url="/trazamed.WebService",content=soap_body)
+            
             if response.status_code == 200:
                 root = ET.fromstring(response.text)
                 ns1_element = root.findall('.//ns1:*', namespaces={'ns1': 'http://business.mywebservice.inssjp.com/'})
