@@ -136,3 +136,17 @@ class SendMedicamento(CredentialUser):
         send_Med_template = send_Med_template.render(data=data)
         response = await connection.send_requests(body=send_Med_template)
         return response
+
+class GetCatalogoByGLN(CredentialUser):
+    GLN: Optional[str] = Field(default="", max_length=13)
+    CUIT: Optional[str] = Field(default="", max_length=11)
+    Razon_social: Optional[str] = Field(default="", max_length=150)
+    Id_prov: Optional[str] = Field(default="")
+    Page: int = Field(default=1)
+    Offset: int = Field(default=10) 
+
+    async def send_to_ws(self, connection: HttpxConnection):
+        get_catalogo = folder_template.get_template("getCatalogoElectronicoByGLN.xml")
+        get_catalogo = get_catalogo.render(data=self)
+        response = await connection.send_requests(body=get_catalogo)
+        return response

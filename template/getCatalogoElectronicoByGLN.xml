@@ -1,0 +1,11 @@
+ <ns1:getCatalogoElectronicoByGLN xmlns:ns1="http://business.mywebservice.inssjp.com/">
+    <arg0>{{ data.User }}</arg0><!-- Usuario -->
+    <arg1>{{ data.Password }}</arg1><!-- Contraseña -->
+    <arg2>{{ data.GLN }}</arg2><!-- Gln agente buscado-->
+    <arg3>{{ data.CUIT }}</arg3><!-- Cuit agente buscado-->
+    <arg4>{{ data.RazonSocial}}</arg4><!-- Razón social agente buscado-->
+    <arg5>{{ data.Id_prov }}</arg5><!-- id provincia agente buscado-->
+    <arg6>{{ data.Id_agente}}</arg6><!-- id tipo agente buscado-->
+    <arg7>{{ data.Page }}</arg7><!-- Página -->
+    <arg8>{{ data.Offset }}</arg8><!-- Offset-->
+</ns1:getCatalogoElectronicoByGLN>

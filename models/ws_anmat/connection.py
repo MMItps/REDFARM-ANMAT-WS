@@ -5,7 +5,6 @@ from jinja2 import Environment, FileSystemLoader
 import xmltodict
 import xml.etree.ElementTree as ET
 
-
 folder_template = Environment(loader=FileSystemLoader('template'))
 
 class HttpxConnection(BaseModel):
@@ -19,7 +18,7 @@ class HttpxConnection(BaseModel):
         soap_body = main_template.render(Body=body)
 
         async with httpx.AsyncClient(base_url=self.base_url) as client:
-            response = await client.post(url="/trazamed.WebService",content=soap_body)
+            response = await client.post(url="/trazamed.WebService",content=soap_body, timeout=60)
             
             if response.status_code == 200:
                 root = ET.fromstring(response.text)
@@ -30,4 +29,3 @@ class HttpxConnection(BaseModel):
             else:
                 return False
 
-    
