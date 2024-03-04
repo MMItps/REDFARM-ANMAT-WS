@@ -2,7 +2,7 @@
     <arg0>{{data.User}}</arg0> <!-- Usuario -->
     <arg1>{{data.Password}}</arg1><!-- Contraseña -->
     <arg2>
-        <f_operacion>15/04/2015</f_operacion>
+        <f_operacion>{{data.Date}}</f_operacion> 
         <p_ids_transac>{{data.IDTransaction}}</p_ids_transac><!-- Id transacción a confirmar -->
     </arg2>
 </ns1:sendConfirmaTransacc>

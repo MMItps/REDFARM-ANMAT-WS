@@ -4,13 +4,19 @@ from pydantic import BaseModel, Field
 from typing import Optional, Union
 from jinja2 import Environment, FileSystemLoader
 from models.ws_anmat.connection import HttpxConnection
+from dotenv import load_dotenv
+import os
 
+load_dotenv()
+
+USER = os.environ.get("UserTest")
+PASS = os.environ.get("PassTest")
 
 folder_template = Environment(loader=FileSystemLoader('template'))
 
 class CredentialUser(BaseModel):
-    User: Optional[str]= "9990664100004"
-    Password: Optional[str]= "Pami1111"
+    User: Optional[str]= USER
+    Password: Optional[str]= PASS
 
 class Cancel(CredentialUser):
     ID: Union[int, str] 
@@ -24,7 +30,7 @@ class Cancel(CredentialUser):
 
 class Confirm(CredentialUser):
     IDTransaction: Union[int, str] 
-    DateTransaction: str 
+    DateTransaction: str = datetime.now().strftime("%d/%m/%Y")
 
     async def send_to_ws(self, connection: HttpxConnection):
         confirm_template = folder_template.get_template("sendConfirmTrans.xml")
@@ -143,7 +149,7 @@ class GetCatalogoByGLN(CredentialUser):
     Razon_social: Optional[str] = Field(default="", max_length=150)
     Id_prov: Optional[str] = Field(default="")
     Page: int = Field(default=1)
-    Offset: int = Field(default=10) 
+    Offset: int = Field(default=100) 
 
     async def send_to_ws(self, connection: HttpxConnection):
         get_catalogo = folder_template.get_template("getCatalogoElectronicoByGLN.xml")
